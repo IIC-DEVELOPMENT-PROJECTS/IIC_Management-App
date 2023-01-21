@@ -1,10 +1,15 @@
 package com.iic.app.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,5 +36,8 @@ public class ProjectInfo {
 	private String prefDueDate;
 	@Column(name = "CompletionDate")
 	private String completionDate;
+	
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projInfo")
+	private List<Credentials> credList=new ArrayList<>();
 
 }

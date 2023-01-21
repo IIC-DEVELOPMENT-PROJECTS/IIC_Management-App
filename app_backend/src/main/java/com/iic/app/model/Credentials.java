@@ -1,4 +1,7 @@
 package com.iic.app.model;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -41,6 +46,10 @@ public class Credentials {
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)
 	@JoinColumn(name = "OtId", referencedColumnName = "OtherInfoId")
 	private OtherInfo otinfo;
+	
+	@ManyToMany(cascade = CascadeType.ALL )
+	@JoinTable(name="Cred_Projects", joinColumns = {@JoinColumn(name="Project_Id")}, inverseJoinColumns = {@JoinColumn(name ="User_Id" )})
+	private List<ProjectInfo> projInfo=new ArrayList<>();
 	
 
 }
