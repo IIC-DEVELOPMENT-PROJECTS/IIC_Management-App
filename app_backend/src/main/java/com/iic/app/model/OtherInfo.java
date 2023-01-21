@@ -1,5 +1,9 @@
 package com.iic.app.model;
-
+/*
+ * Other-Info is the dependent Class.
+ * One to One(Bi-directional) Mapping done with Credential
+ * Done by Arpan Ghosh
+*/
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -34,8 +38,8 @@ public class OtherInfo {
 	@Column(name = "Experience")
 	private String exp;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="CredId", referencedColumnName = "UserId")
-	private Credentials credentials;
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="CredId", referencedColumnName = "UserId")
+//	private Credentials credentials;
 
 }

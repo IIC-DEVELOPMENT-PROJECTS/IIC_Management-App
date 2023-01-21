@@ -1,5 +1,9 @@
 package com.iic.app.model;
-
+/*
+ * Personal-Info is the dependent Class.
+ * One to One(Bi-directional) Mapping done with Credential
+ * Done by Arpan Ghosh
+ */
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +16,7 @@ public class PersonalInfo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "PersonalInfoId")
+	@Column(name = "personalInfoId")
 	private String personalInfoId;
 	@Column(name = "FirstName")
 	private String firstName;
@@ -26,7 +30,7 @@ public class PersonalInfo {
 	private String enrollId;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="CredId", referencedColumnName = "UserId")
+	@JoinColumn(name="CredId", referencedColumnName = "userId")
 	private Credentials credentials;
 
 }

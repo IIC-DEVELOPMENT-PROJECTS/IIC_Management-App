@@ -1,4 +1,10 @@
 package com.iic.app.model;
+/*
+ * Credential is the source Class.
+ * One to One(Bi-directional) Mapping done with Personal-Info
+ * One to One(Bi-directional) Mapping done with Other-Info
+ * Done by Arpan Ghosh
+ */
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +35,7 @@ public class Credentials {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "UserId")
+	@Column(name = "userId")
 	private String userId;
 	@NotNull(message = "Password shouldn't be null")
 	@Pattern(regexp = "((?=.*[@!#$%])(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,30})", message = "Should be 8 to 30 characters and must contain 1 uppercase, lowercase, number and special character")
@@ -40,16 +46,16 @@ public class Credentials {
 	
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)
-	@JoinColumn(name = "PiId", referencedColumnName = "PersonalInfoId")
+	@JoinColumn(name = "PiId", referencedColumnName = "personalInfoId")
 	private PersonalInfo info;
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)
-	@JoinColumn(name = "OtId", referencedColumnName = "OtherInfoId")
-	private OtherInfo otinfo;
+//	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)
+//	@JoinColumn(name = "OtId", referencedColumnName = "OtherInfoId")
+//	private OtherInfo otinfo;
 	
-	@ManyToMany(cascade = CascadeType.ALL )
-	@JoinTable(name="Cred_Projects", joinColumns = {@JoinColumn(name="Project_Id")}, inverseJoinColumns = {@JoinColumn(name ="User_Id" )})
-	private List<ProjectInfo> projInfo=new ArrayList<>();
+//	@ManyToMany(cascade = CascadeType.ALL )
+//	@JoinTable(name="Cred_Projects", joinColumns = {@JoinColumn(name="Project_Id")}, inverseJoinColumns = {@JoinColumn(name ="User_Id" )})
+//	private List<ProjectInfo> projInfo=new ArrayList<>();
 	
 
 }

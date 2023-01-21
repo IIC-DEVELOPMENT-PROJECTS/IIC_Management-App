@@ -37,7 +37,7 @@ public class ProjectInfo {
 	@Column(name = "CompletionDate")
 	private String completionDate;
 	
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projInfo")
-	private List<Credentials> credList=new ArrayList<>();
+//	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projInfo")
+//	private List<Credentials> credList=new ArrayList<>();
 
 }
