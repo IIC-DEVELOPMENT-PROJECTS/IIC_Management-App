@@ -1,13 +1,4 @@
 package com.iic.app.model;
-/*
- * Credential is the source Class.
- * One to One(Bi-directional) Mapping done with Personal-Info
- * One to One(Bi-directional) Mapping done with Other-Info
- * Done by Arpan Ghosh
- */
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,11 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="UserCredentials")
+@Table(name="User_Credentials")
 public class Credentials {
 	
 	@Id
@@ -47,13 +35,13 @@ public class Credentials {
 	private String userRole;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)
-	@JoinColumn(name = "Personal_Info_Id", referencedColumnName = "Personal_Info_Id")
+	@OneToOne(cascade = CascadeType.ALL,mappedBy ="credentials", fetch = FetchType.LAZY)
+	@JoinTable(name="Credential_Personal",joinColumns=@JoinColumn(name="User_Id",referencedColumnName = "User_Id"),inverseJoinColumns=@JoinColumn(name = "Personal_Info_Id", referencedColumnName = "Personal_Info_Id"))
 	private PersonalInfo info;
 	
-//	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)
-//	@JoinColumn(name = "OtId", referencedColumnName = "OtherInfoId")
-//	private OtherInfo otinfo;
+	@OneToOne(cascade = CascadeType.ALL,mappedBy ="credentials", fetch = FetchType.LAZY)
+	@JoinTable(name="Credential_OtherInfo",joinColumns=@JoinColumn(name="User_Id",referencedColumnName = "User_Id"),inverseJoinColumns=@JoinColumn(name = "Other_Info_Id", referencedColumnName = "Other_Info_Id"))
+	private OtherInfo otinfo;
 	
 //	@ManyToMany(cascade = CascadeType.ALL )
 //	@JoinTable(name="Cred_Projects", joinColumns = {@JoinColumn(name="Project_Id")}, inverseJoinColumns = {@JoinColumn(name ="User_Id" )})

@@ -6,13 +6,24 @@ import jakarta.persistence.CascadeType;
  * Done by Arpan Ghosh
  */
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name="Personal_Info")
 public class PersonalInfo {
 	
 	@Id
@@ -35,8 +46,9 @@ public class PersonalInfo {
 	@Column(name = "EnrollmentId")
 	private String enrollId;
 	
+	//One to One Mapping with Credentials
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="User_Id", referencedColumnName = "User_Id")
+	@JoinTable(name="Credential_Personal",joinColumns=@JoinColumn(name="Personal_Info_Id",referencedColumnName = "Personal_Info_Id"),inverseJoinColumns=@JoinColumn(name = "User_Id", referencedColumnName = "User_Id"))
 	private Credentials credentials;
 
 }
