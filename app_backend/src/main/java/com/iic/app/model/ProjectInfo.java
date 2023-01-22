@@ -25,7 +25,7 @@ public class ProjectInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ProjectId")
-	private String projId;
+	private Long projId;
 	@Column(name = "ProjectName")
 	private String projName;
 	@Column(name = "ProjectDescription")

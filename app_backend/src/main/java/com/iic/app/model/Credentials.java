@@ -35,18 +35,20 @@ public class Credentials {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "userId")
-	private String userId;
-	@NotNull(message = "Password shouldn't be null")
-	@Pattern(regexp = "((?=.*[@!#$%])(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,30})", message = "Should be 8 to 30 characters and must contain 1 uppercase, lowercase, number and special character")
+	@Column(name = "User_Id")
+	private Long userId;
+	
+	//@NotNull(message = "Password shouldn't be null")
+	//@Pattern(regexp = "((?=.*[@!#$%])(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,30})", message = "Should be 8 to 30 characters and must contain 1 uppercase, lowercase, number and special character")
 	@Column(name = "password")
 	private String password;
+	
 	@Column(name = "UserRole")
 	private String userRole;
 	
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)
-	@JoinColumn(name = "PiId", referencedColumnName = "personalInfoId")
+	@JoinColumn(name = "Personal_Info_Id", referencedColumnName = "Personal_Info_Id")
 	private PersonalInfo info;
 	
 //	@OneToOne(cascade = CascadeType.ALL, mappedBy = "credentials", fetch = FetchType.LAZY)

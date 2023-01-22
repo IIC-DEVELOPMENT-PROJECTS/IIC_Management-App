@@ -26,7 +26,7 @@ public class OtherInfo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "OtherInfoId")
-	private String otherInfoId;
+	private Long otherInfoId;
 	@Column(name = "Specialization")
 	private String specialization;
 	@Column(name = "DateofJoining")
